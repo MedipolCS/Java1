@@ -37,11 +37,13 @@ public class Fire {
 				this.square.get(this.y).get(this.x).ligthUp(2);
 			}
 			else if( (y==((Window.height-1)/2)-1) && (this.position.y < (Window.height-1)/2) ){
-				this.square.get(this.y).get(this.x).ligthUp(0);
+				if(this.position.y != y)
+					this.square.get(this.y).get(this.x).ligthUp(0);
 				this.y++;
 			}
 			else if( (y==((Window.height-1)/2)+1) && (this.position.y > (Window.height-1)/2) ){
-				this.square.get(this.y).get(this.x).ligthUp(0);
+				if(this.position.y != y)
+					this.square.get(this.y).get(this.x).ligthUp(0);
 				this.y--;
 			}
 			else{
