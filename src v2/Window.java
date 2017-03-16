@@ -12,6 +12,7 @@ public class Window extends JFrame{
 	public static ThreadController t2;
 	public static int height = 31; //always have to be odd number.
 	public static int width = 20;  //always have to be even number.
+	Random random = new Random();
 	// Default constructor.
 	public Window(){ 
 		
@@ -33,8 +34,8 @@ public class Window extends JFrame{
 		}
 		
 		
-		t1 = new ThreadController(new Position(10,10));
-		t2 = new ThreadController(new Position(10,20));
+		t1 = new ThreadController(new Position(random.nextInt(width),random.nextInt((height-1)/2)));
+		t2 = new ThreadController(new Position(random.nextInt(width),random.nextInt((height-1)/2)+((height-1)/2)+1 ));
 		t1.start();
 		t2.start();
 		
