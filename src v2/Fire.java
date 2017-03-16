@@ -22,27 +22,6 @@ public class Fire {
 	public void pullTheTriger(){		
 		if(start==1){
 			// When bullet goes to end of the limit of the window. 
-			/*if( (y<=0) || (y>=Window.height-1)){
-				this.square.get(this.y).get(this.x).ligthUp(0);
-				this.start=0;
-			}
-			//Else if would be change. 
-			else if((y==(((Window.height-1)/2)) && this.position.y<((Window.height-1)/2))
-					|| (y==(((Window.height-1)/2)+1) && this.position.y>((Window.height-1)/2))){
-				this.square.get(this.y).get(this.x).ligthUp(3);
-				if(this.position.y<((Window.height-1)/2)) this.y++;
-				else if(this.position.y>0) this.y--;
-				this.square.get(this.y).get(this.x).ligthUp(2);
-				if(this.position.y<((Window.height-1)/2)) this.y++;
-				else if(this.position.y>0) this.y--;
-			}
-			else {
-				this.square.get(this.y).get(this.x).ligthUp(0);
-				if(this.position.y<((Window.height-1)/2)) this.y++;
-				else if(this.position.y>0) this.y--;
-				this.square.get(this.y).get(this.x).ligthUp(2);
-			}*/
-			// When bullet goes to end of the limit of the window. 
 			if( (y<=0) || (y>=Window.height-1)){
 				this.square.get(this.y).get(this.x).ligthUp(0);
 				this.start=0;
@@ -66,6 +45,7 @@ public class Fire {
 				this.y--;
 			}
 			else{
+				if(this.position.y != y)
 				this.square.get(this.y).get(this.x).ligthUp(0);
 				if(this.position.y<((Window.height-1)/2)) this.y++;
 				else if(this.position.y>0) this.y--;
