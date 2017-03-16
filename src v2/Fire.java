@@ -4,6 +4,8 @@ public class Fire {
 	public ArrayList<ArrayList<DataOfSquare>> square = new ArrayList<>();
 	public int x;
 	public int y;
+	static int score1 = 0;
+	static int score2 = 0;
 	private int start; //It will be zero when the fire goes out of the window.
 	Position position;
 	
@@ -17,6 +19,18 @@ public class Fire {
 		this.x = position.x;
 		this.square.get(this.y).get(this.x).ligthUp(2);
 		this.position = position;
+		if (this.position.x == x && this.position.y == position.y){
+			if(this.position.y > 15){
+				score1++;
+				System.out.println("player1:\t" + score1 + "\nplayer2:\t" + score2);
+
+			}
+			else{
+				score2++;
+				System.out.println("player1:\t" + score1 + "\nplayer2:\t" + score2);
+			}
+		}
+			
 	}
 	
 	public void pullTheTriger(){		
@@ -61,3 +75,4 @@ public class Fire {
 	}
 	
 }
+
