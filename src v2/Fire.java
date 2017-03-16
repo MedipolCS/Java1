@@ -22,7 +22,11 @@ public class Fire {
 	public void pullTheTriger(){		
 		if(start==1){
 			// When bullet goes to end of the limit of the window. 
-			if( (y<=0) || (y>=Window.height-1)){
+			if( ( y<=0) && (this.position.y!=0) ){
+				this.square.get(this.y).get(this.x).ligthUp(0);
+				this.start=0;
+			}
+			else if( (y>=Window.height-1) && (this.position.y!=Window.height-1) ){
 				this.square.get(this.y).get(this.x).ligthUp(0);
 				this.start=0;
 			}
