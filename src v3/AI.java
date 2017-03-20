@@ -23,7 +23,6 @@ public class AI extends Thread{
 		try {
 			robot = new Robot();
 		} catch (AWTException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -34,6 +33,7 @@ public class AI extends Thread{
 		while(aiLoop){
 			int keyEvent = keyBindings.get(random.nextInt(5));
 			robot.keyPress(keyEvent);
+			robot.keyRelease(keyEvent);
 			pause();
 		}
 	}

@@ -3,32 +3,27 @@ import java.util.ArrayList;
 public class ThreadController extends Thread {
 	
 	public ArrayList<ArrayList<DataOfSquare>> square;
-	public boolean gameLoop;
-	ArrayList<Fire> fire = new ArrayList<>(); 
 	Position position;
 	private int gameSpeed = 50;
 	public int movementInput=0; //1-rigth 2-left 3-up 4-down
-	public boolean fireInput = false;
-	public int fireCount=0;
 	public int score;
 	public int live;	
-	private int whichPlayer;
+	public boolean gameLoop;
 	
-	public ThreadController(Position position, int whichPlayer){
+	
+	public ThreadController(Position position){
 		this.gameLoop=true;
 		this.live=3;
 		this.score=0;
-		this.whichPlayer=whichPlayer;
 		square = Window.panel;
 		this.position = position;
-		spawnPoint(position);
+		square.get(position.y).get(position.x).ligthUp(1);
 	}
 	
 	@Override
 	public void run() {
 		while(gameLoop){
 			movePlayer(position);
-			moveFire(fire);
 			pauser();
 			if(live==0){
 				gameFinished();
@@ -38,12 +33,6 @@ public class ThreadController extends Thread {
 		}
 	}
 	
-	private void moveFire(ArrayList<Fire> fire) {
-		for(int i=0;i<fireCount;i++){
-			fire.get(i).pullTheTriger();
-		}
-	}
-
 	private void pauser() {
 		try {
 			sleep(gameSpeed);
@@ -52,14 +41,9 @@ public class ThreadController extends Thread {
 		}
 	}
 	
+	//fire.get .....
 	private void movePlayer(Position position){
-		if(fireInput==true ){
-			fire.add(new Fire(position, this.whichPlayer));
-			fireCount++;
-			fireInput = false;
-		}
 		if(collisionDetection(position)){
-			//For Player 1
 			if(movementInput==1 ){
 				square.get(position.y).get(position.x).ligthUp(0);
 				position.x+=1;
@@ -93,10 +77,6 @@ public class ThreadController extends Thread {
 		else return true;
 	}
 	
-	private void spawnPoint(Position position){
-		square.get(position.y).get(position.x).ligthUp(1);
-	}
-	
 	private void gameFinished(){
 		for(int i=0;i<Window.width;i++){
 			for(int j=0;j<Window.height;j++){
@@ -108,5 +88,6 @@ public class ThreadController extends Thread {
 		Window.ai.aiLoop=false;
 		Window.startButton1v1.setVisible(true);
 		Window.startButton1vAI.setVisible(true);
+		Window.settings.setVisible(true);
 	}
 }
